@@ -112,16 +112,29 @@ ve.dm.MWBlockImageNode.static.toDataElement = function ( domElements, converter 
 
 	// Default-size
 	if ( classes.indexOf( 'mw-default-size' ) !== -1 ) {
+		// Flag as default size
 		attributes.defaultSize = true;
 		recognizedClasses.push( 'mw-default-size' );
-
-		// Force default size
-		if ( attributes.width > attributes.height ) {
-			attributes.width = defaultSizeBoundingBox;
-			attributes.height = null;
-		} else {
-			attributes.width = null;
-			attributes.height = defaultSizeBoundingBox;
+		// Force wiki-default size for thumb and frameless
+		if (
+			attributes.type === 'thumb' ||
+			attributes.type === 'frameless'
+		) {
+			// Parsoid hands us images with default Wikipedia dimensions
+			// rather than default MediaWiki configuration dimensions.
+			// We must force local wiki default in edit mode for default
+			// size images.
+			if ( attributes.width > attributes.height ) {
+				if ( attributes.height !== null ) {
+					attributes.height = ( attributes.height / attributes.width ) * defaultSizeBoundingBox;
+				}
+				attributes.width = defaultSizeBoundingBox;
+			} else {
+				if ( attributes.width !== null ) {
+					attributes.width = ( attributes.width / attributes.height ) * defaultSizeBoundingBox;
+				}
+				attributes.height = defaultSizeBoundingBox;
+			}
 		}
 	}
 
