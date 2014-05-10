@@ -696,6 +696,7 @@ $wgResourceModules += array(
 			'visualeditor-toolbar-insert',
 			'visualeditor-toolbar-savedialog',
 			'visualeditor-toolbar-style-tooltip',
+			'visualeditor-toolbar-cite-label',
 			'visualeditor-viewpage-savewarning',
 			'visualeditor-wikitext-warning-title',
 			'visualeditor-window-title',
