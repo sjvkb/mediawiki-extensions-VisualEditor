@@ -1632,7 +1632,7 @@ ve.init.mw.ViewPageTarget.prototype.maybeShowDialogs = function () {
 				!urlSaysHide &&
 				(
 					prefSaysShow ||
-					$.cookie( 've-beta-welcome-dialog' ) === null
+					( !usePrefs && $.cookie( 've-beta-welcome-dialog' ) === null )
 				)
 			) {
 			this.surface.getDialogs().getWindow( 'betaWelcome' ).open();
