@@ -72,7 +72,7 @@ ve.ui.MWMediaEditDialog.static.toolbarGroups = [
 	// Cite
 	{
 		'type': 'list',
-		'label': 'Cite',
+		'label': OO.ui.deferMsg( 'visualeditor-toolbar-cite-label' ),
 		'indicator': 'down',
 		'include': [ { 'group': 'cite' } ]
 	},
